@@ -22,7 +22,7 @@ def send_submitter_email():
     smtp_server = "smtp.gmail.com"
     smtp_port = 587
     smtp_username = "fmb@mississaugajamaat.com"
-    smtp_password = "cbl3C'2F*pVV"
+    smtp_password = ""
 
     server = smtplib.SMTP(smtp_server, smtp_port)
     server.starttls()
