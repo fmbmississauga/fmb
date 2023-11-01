@@ -1,6 +1,2 @@
-# Ignore log files
-*.log
-
-# Ignore the build directory
-/html/
 /db_data/
+/html/
