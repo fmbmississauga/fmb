@@ -9,8 +9,8 @@
 
 <channel>
 	<title>FMB 360</title>
-	<atom:link href="http://10.0.0.190/feed/?simply_static_page=72" rel="self" type="application/rss+xml" />
-	<link>/</link>
+	<atom:link href="http://10.0.0.190/feed/?simply_static_page=175" rel="self" type="application/rss+xml" />
+	<link>https://fmbmississauga.github.io/fmb/</link>
 	<description></description>
 	<lastBuildDate>Thu, 02 Dec 2021 13:55:39 +0000</lastBuildDate>
 	<language>en-US</language>
@@ -21,8 +21,8 @@
 	<generator>https://wordpress.org/?v=6.3.2</generator>
 	<item>
 		<title>Hello world!</title>
-		<link>/2021/12/02/hello-world/</link>
-					<comments>/2021/12/02/hello-world/#comments</comments>
+		<link>https://fmbmississauga.github.io/fmb/2021/12/02/hello-world/</link>
+					<comments>https://fmbmississauga.github.io/fmb/2021/12/02/hello-world/#comments</comments>
 		
 		<dc:creator><![CDATA[admin]]></dc:creator>
 		<pubDate>Thu, 02 Dec 2021 13:55:39 +0000</pubDate>
@@ -32,7 +32,7 @@
 					<description><![CDATA[]]></description>
 										<content:encoded><![CDATA[]]></content:encoded>
 					
-					<wfw:commentRss>/2021/12/02/hello-world/feed/</wfw:commentRss>
+					<wfw:commentRss>https://fmbmississauga.github.io/fmb/2021/12/02/hello-world/feed/</wfw:commentRss>
 			<slash:comments>1</slash:comments>
 		
 		
