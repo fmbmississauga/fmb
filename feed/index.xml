@@ -9,10 +9,10 @@
 
 <channel>
 	<title>FMB 360</title>
-	<atom:link href="http://10.0.0.190/feed/?simply_static_page=1026" rel="self" type="application/rss+xml" />
+	<atom:link href="http://10.0.0.190/feed/?simply_static_page=1447" rel="self" type="application/rss+xml" />
 	<link>https://fmbmississauga.github.io/fmb/</link>
 	<description></description>
-	<lastBuildDate>Sun, 05 Nov 2023 16:22:00 +0000</lastBuildDate>
+	<lastBuildDate>Sun, 05 Nov 2023 16:45:26 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
