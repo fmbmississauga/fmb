@@ -1,83 +1,80 @@
 var emailpdfBlob;
 function onFormSubmit(e) {
-    var responseSheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Form Responses 1"); // Replace with the actual name of your response sheet
-    var lastRow = responseSheet.getLastRow();
-    var questionsRange = responseSheet.getRange(1, 1, 1, responseSheet.getLastColumn());
-    var questions = questionsRange.getValues()[0];
-    var responses = responseSheet.getRange(lastRow, 1, 1, responseSheet.getLastColumn()).getValues()[0];
-    // Create an HTML representation of the table
-    var htmlTable = "<table style='width: 100%; color: rgb(5, 107, 240); font-family: Calibri, sans-serif; border-collapse: collapse; border: 2px solid rgb(236, 142, 65);'><tbody><tr><th style='width: 50%; border: 2px solid rgb(236, 142, 65);'>Question</th><th style='width: 50%; border: 2px solid rgb(236, 142, 65);'>Response</th></tr>";
+    combineImagesIntoPDF(function () {
+        var responseSheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Form Responses 1"); // Replace with the actual name of your response sheet
+        var lastRow = responseSheet.getLastRow();
+        var questionsRange = responseSheet.getRange(1, 1, 1, responseSheet.getLastColumn());
+        var questions = questionsRange.getValues()[0];
+        var responses = responseSheet.getRange(lastRow, 1, 1, responseSheet.getLastColumn()).getValues()[0];
+        // Create an HTML representation of the table
+        var htmlTable = "<table style='width: 100%; color: rgb(5, 107, 240); font-family: Calibri, sans-serif; border-collapse: collapse; border: 2px solid rgb(236, 142, 65);'><tbody><tr><th style='width: 50%; border: 2px solid rgb(236, 142, 65);'>Question</th><th style='width: 50%; border: 2px solid rgb(236, 142, 65);'>Response</th></tr>";
+        for (var i = 0; i < questions.length; i++) {
+            switch (responses[i]) {
+                case "A1 Cash n Carry":
+                    responseSheet.getRange(lastRow, 13).setValue("A1 Cash+Carry");
+                    break;
 
-    for (var i = 0; i < questions.length; i++) {
-        switch (responses[i]) {
-            case "A1 Cash n Carry":
-                responseSheet.getRange(lastRow, 13).setValue("A1 Cash+Carry");
-                break;
+                case "Apna Farm Brampton":
+                    responseSheet.getRange(lastRow, 13).setValue("Apna Farm Brampton");
+                    break;
 
-            case "Apna Farm Brampton":
-                responseSheet.getRange(lastRow, 13).setValue("Apna Farm Brampton");
-                break;
+                case "Apna Farm Mississauga":
+                    responseSheet.getRange(lastRow, 13).setValue("Apna Farm");
+                    break;
 
-            case "Apna Farm Mississauga":
-                responseSheet.getRange(lastRow, 13).setValue("Apna Farm");
-                break;
+                case "Bombay Grocers":
+                    responseSheet.getRange(lastRow, 13).setValue("Bombay Grocers");
+                    break;
 
-            case "Bombay Grocers":
-                responseSheet.getRange(lastRow, 13).setValue("Bombay Grocers");
-                break;
+                case "New Fatema Grocers":
+                    responseSheet.getRange(lastRow, 13).setValue("New-Fatima Grocers Ltd.");
+                    break;
 
-            case "New Fatema Grocers":
-                responseSheet.getRange(lastRow, 13).setValue("New-Fatima Grocers Ltd.");
-                break;
+                case "Owais Inc":
+                    responseSheet.getRange(lastRow, 13).setValue("Owais Inc");
+                    break;
 
-            case "Owais Inc":
-                responseSheet.getRange(lastRow, 13).setValue("Owais Inc");
-                break;
+                case "Pak Halal Meat":
+                    responseSheet.getRange(lastRow, 13).setValue("2399987 Ontario Inc.");
+                    break;
 
-            case "Pak Halal Meat":
-                responseSheet.getRange(lastRow, 13).setValue("2399987 Ontario Inc.");
-                break;
+                case "Subzi Mandi":
+                    responseSheet.getRange(lastRow, 13).setValue("Subzi Mandi");
+                    break;
 
-            case "Subzi Mandi":
-                responseSheet.getRange(lastRow, 13).setValue("Subzi Mandi");
-                break;
+                case "Tazy Inc":
+                    responseSheet.getRange(lastRow, 13).setValue("Tazy Inc");
+                    break;
 
-            case "Tazy Inc":
-                responseSheet.getRange(lastRow, 13).setValue("Tazy Inc");
-                break;
+                case "Other":
+                    if (responseSheet.getRange(lastRow, 13).getValue() == "") {
+                        responseSheet.getRange(lastRow, 13).setValue(responseSheet.getRange(lastRow, 8).getValue());
+                    }
+                    break;
 
-            case "Other":
-                if (responseSheet.getRange(lastRow, 13).getValue() == "") {
-                    responseSheet.getRange(lastRow, 13).setValue(responseSheet.getRange(lastRow, 8).getValue());
-                }
-                break;
+                // Add more cases as needed
+                default:
+                    // Handle other cases if needed
+                    break;
+            }
 
-            // Add more cases as needed
-            default:
-                // Handle other cases if needed
-                break;
+            htmlTable += "<tr><td style='width: 50%; border: 2px solid rgb(236, 142, 65);'>" + questions[i] + "</td><td style='width: 50%; border: 2px solid rgb(236, 142, 65);'>" + responses[i] + "</td></tr>";
         }
-
-        htmlTable += "<tr><td style='width: 50%; border: 2px solid rgb(236, 142, 65);'>" + questions[i] + "</td><td style='width: 50%; border: 2px solid rgb(236, 142, 65);'>" + responses[i] + "</td></tr>";
-    }
-    htmlTable += "</tbody></table>";
-
-    combineImagesIntoPDF();
-    sendInternalEmail(htmlTable);
+        htmlTable += "</tbody></table>";
+        sendInternalEmail(htmlTable);
+    });
 }
 
 function sendInternalEmail(htmlTable) {
     // var emailAddresses = ["fmbpayments@mississaugajamaat.com", "fmbgrocery@mississaugajamaat.com","fmbpurchase@mississaugajamaat.com", "fmbsecretary@mississaugajamaat.com", "fmbit@mississaugajamaat.com" ];
-    // var emailAddresses = ["thismail.raja@gmail.com", "fmbsecretary@mississaugajamaat.com", "fmbit@mississaugajamaat.com"];
-    var emailAddresses = ["fmbpayments@mississaugajamaat.com", "fmbsecretary@mississaugajamaat.com", "fmbit@mississaugajamaat.com"];
+    var emailAddresses = ["thismail.raja@gmail.com"];
+    // var emailAddresses = ["fmbpayments@mississaugajamaat.com", "fmbsecretary@mississaugajamaat.com", "fmbit@mississaugajamaat.com"];
     var subject = "FMB Expenses Reimbusement Form";
     var senderName = "FMB-Mississauga"
     var senderEmail = "fmb@mississaugjamaat.com"
     var htmlBody = "<p>Salaam un Jameel</p><br><p>Please find the details of an expense submitted.</p>";
     htmlBody += htmlTable;
     htmlBody += "<p>Shukran</p> <p>FMB Mississauga</p>";
-
-
     for (var i = 0; i < emailAddresses.length; i++) {
         var emailData = {
             to: emailAddresses[i],
@@ -88,30 +85,25 @@ function sendInternalEmail(htmlTable) {
         };
         var htmlOutput = HtmlService.createHtmlOutput(emailData.body).getContent();
         MailApp.sendEmail(emailData.to, emailData.subject, emailData.body, { htmlBody: htmlOutput, name: "FMB-Mississauga", attachments: [emailpdfBlob] });
-
     }
 }
 
-async function combineImagesIntoPDF() {
+async function combineImagesIntoPDF(callback) {
     var responseSheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Form Responses 1");
     var folderSearch = DriveApp.getFoldersByName("Expenses_Upload_Folder");
     while (folderSearch.hasNext()) {
         var folder = folderSearch.next();
     }
-
     var lastRow = responseSheet.getLastRow();
     var data = responseSheet.getRange(lastRow, 1, 1, responseSheet.getLastColumn()).getValues()[0];
-
     var imageLinks = data[11].split(',');
     if (imageLinks.length > 0) {
         var images = [];
-
         for (var j = 0; j < imageLinks.length; j++) {
             images.push(imageLinks[j]);
         }
         try {
             const pdfBlob = await createPDFFromFormImages(images, data[0]);
-            console.log(pdfBlob);
             emailpdfBlob = pdfBlob;
             var pdfFile = folder.createFile(pdfBlob);
             // Get the URL of the newly created PDF file and update the sheet
@@ -121,7 +113,9 @@ async function combineImagesIntoPDF() {
             console.error('Error occurred:', error);
         }
     }
+    callback();
 }
+
 async function createPDFFromFormImages(images, fileprefix) {
     var pdfBlobArray = [];
     // Create a new Google Doc
@@ -137,13 +131,11 @@ async function createPDFFromFormImages(images, fileprefix) {
     var rightMargin = 36;
     var topMargin = 36;
     var bottomMargin = 36;
-
     // Set the page size and margins
     document.getBody().setMarginLeft(leftMargin);
     document.getBody().setMarginRight(rightMargin);
     document.getBody().setMarginTop(topMargin);
     document.getBody().setMarginBottom(bottomMargin);
-
     for (var i = 0; i < images.length; i++) {
         var imageID = images[i].replace("https://drive.google.com/open?id=", "").trim();
         var imageBlob = DriveApp.getFileById(imageID).getBlob();
