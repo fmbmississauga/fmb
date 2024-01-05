@@ -9,16 +9,16 @@
 
 <channel>
 	<title>FMB 360</title>
-	<atom:link href="http://10.0.0.190/feed/?simply_static_page=1521" rel="self" type="application/rss+xml" />
+	<atom:link href="http://10.0.0.190/feed/?simply_static_page=1673" rel="self" type="application/rss+xml" />
 	<link>https://fmbmississauga.github.io/fmb/</link>
 	<description></description>
-	<lastBuildDate>Mon, 04 Dec 2023 16:35:48 +0000</lastBuildDate>
+	<lastBuildDate>Tue, 02 Jan 2024 14:08:29 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.4.1</generator>
+	<generator>https://wordpress.org/?v=6.4.2</generator>
 
 <image>
 	<url>https://fmbmississauga.github.io/fmb/wp-content/uploads/2023/11/download-150x150.png</url>
